@@ -1,25 +1,27 @@
-# Trae Agent
+# Polli-Agent 🌸
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
- ![Alpha]( https://img.shields.io/badge/Status-Alpha-red)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Pollinations](https://img.shields.io/badge/Powered%20by-Pollinations-ff6b9d)](https://pollinations.ai)
+ ![Production Ready]( https://img.shields.io/badge/Status-Production%20Ready-green)
 
-*Please note that this project is still in the alpha stage and being actively developed. We welcome various contributions from the community.*
+*Polli-Agent is a production-ready AI coding assistant powered by Pollinations AI models.*
 
-**Trae Agent** is an LLM-based agent for general purpose software engineering tasks. It provides a powerful CLI interface that can understand natural language instructions and execute complex software engineering workflows using various tools and LLM providers.
+**Polli-Agent** is an advanced LLM-based agent specifically designed for software engineering tasks, powered by [Pollinations AI](https://pollinations.ai). It provides a powerful CLI interface that understands natural language instructions and executes complex coding workflows using multiple Pollinations models including OpenAI, DeepSeek, Qwen, and Mistral.
 
-**Difference with Other CLI Agents:** Trae Agent offers a transparent, modular architecture that researchers and developers can easily modify, extend, and analyze. The open-source nature allows for deep customization of agent behaviors, tool implementations, and workflow patterns, making it an ideal platform for **studying AI agent architectures, conducting ablation studies, and developing novel agent capabilities**. This ***research-friendly design*** enables the academic and open-source communities to contribute to and build upon the foundational agent framework, fostering innovation in the rapidly evolving field of AI agents.
+**What Makes Polli-Agent Special:** Polli-Agent combines the power of multiple Pollinations AI models with a transparent, modular architecture. Unlike other agents, it offers **seamless multi-model switching**, **optional API key usage** (works with free tier), and **production-ready stability**. The Pollinations integration provides access to cutting-edge models like DeepSeek Reasoning, Qwen Coder, and Mistral, all through a unified interface.
 
-**Project Status:** Trae Agent is currently an experimental project. We are working hard on supporting more LLM providers, enriched command-line interface, developing more tools and adding MCP supports. Building a robust unit testing framework for Trae Agent is also our priority.
+**Project Status:** Polli-Agent is **production-ready** and actively maintained. Built on the solid foundation of Trae-Agent, it's specifically optimized for Pollinations AI models with full tool calling support, multi-model capabilities, and robust error handling.
 
 ## ✨ Features
 
+- 🌸 **Pollinations AI Integration**: Native support for multiple Pollinations models
+- 🔄 **Multi-Model Support**: OpenAI, DeepSeek Reasoning, Qwen Coder, Mistral, and more
+- 🆓 **Optional API Key**: Works with free tier (no API key) or premium models (with API key)
 - 🌊 **Lakeview**: Provides short and concise summarisation for agent steps
-- 🤖 **Multi-LLM Support**: Works with OpenAI, Anthropic, Doubao, Azure and OpenRouter APIs
 - 🛠️ **Rich Tool Ecosystem**: File editing, bash execution, sequential thinking, and more
 - 🎯 **Interactive Mode**: Conversational interface for iterative development
 - 📊 **Trajectory Recording**: Detailed logging of all agent actions for debugging and analysis
 - ⚙️ **Flexible Configuration**: JSON-based configuration with environment variable support
-- 🚀 **Easy Installation**: Simple pip-based installation
+- 🚀 **Easy Installation**: Simple uv-based installation
 
 ## 🚀 Quick Start
 
@@ -28,44 +30,52 @@
 We strongly recommend using [UV](https://docs.astral.sh/uv/) to setup the project.
 
 ```bash
-git clone <repository-url>
-cd trae-agent
+git clone https://github.com/pollinations/polli-agent.git
+cd polli-agent
 uv sync
 ```
 
 ### Setup API Keys
 
-We recommend to configure Trae Agent using the config file.
+**Polli-Agent works with or without an API key!**
 
-You can also set your API keys as environment variables:
-
+#### Option 1: Free Tier (No API Key Required)
+Polli-Agent works out of the box with basic Pollinations models:
 ```bash
-# For OpenAI
-export OPENAI_API_KEY="your-openai-api-key"
+# No setup needed - just start using it!
+trae-cli run "Create a hello world Python script"
+```
 
-# For Anthropic
-export ANTHROPIC_API_KEY="your-anthropic-api-key"
+#### Option 2: Premium Models (API Key Required)
+For access to premium models like DeepSeek, Qwen, and Mistral:
 
-# For Doubao (also works with other OpenAI-compatible model providers)
-export DOUBAO_API_KEY="your-doubao-api-key"
-export DOUBAO_API_BASE_URL="your-model-provider-base-url"
+**Environment Variable (Recommended):**
+```bash
+export POLLINATIONS_API_KEY="your-pollinations-api-key"
+```
 
-# For OpenRouter
-export OPENROUTER_API_KEY="your-openrouter-api-key"
-
-# Optional: For OpenRouter rankings
-export OPENROUTER_SITE_URL="https://your-site.com"
-export OPENROUTER_SITE_NAME="Your App Name"
+**Or in Config File:**
+```json
+{
+  "model_providers": {
+    "pollinations": {
+      "api_key": "your-pollinations-api-key"
+    }
+  }
+}
 ```
 
 ### Basic Usage
 
 ```bash
-# Run a simple task
+# Run with default Pollinations model (free tier)
 trae-cli run "Create a hello world Python script"
 
-# Run with Doubao
-trae-cli run "Create a hello world Python script" --provider doubao --model doubao-seed-1.6
+# Use specific Pollinations models
+trae-cli run "Create a Python script" --provider pollinations --model openai
+trae-cli run "Debug this code" --provider pollinations --model deepseek-reasoning
+trae-cli run "Write documentation" --provider pollinations --model qwen-coder
+trae-cli run "Refactor code" --provider pollinations --model mistral
 ```
 
 ## 📖 Usage
@@ -77,21 +87,23 @@ The main entry point is the `trae` command with several subcommands:
 #### `trae run` - Execute a Task
 
 ```bash
-# Basic task execution
+# Basic task execution (uses default Pollinations model)
 trae-cli run "Create a Python script that calculates fibonacci numbers"
 
-# With specific provider and model
-trae-cli run "Fix the bug in main.py" --provider anthropic --model claude-sonnet-4-20250514
-
-# Using OpenRouter with any supported model
-trae-cli run "Optimize this code" --provider openrouter --model "openai/gpt-4o"
-trae-cli run "Add documentation" --provider openrouter --model "anthropic/claude-3-5-sonnet"
+# With specific Pollinations models
+trae-cli run "Fix the bug in main.py" --provider pollinations --model deepseek-reasoning
+trae-cli run "Optimize this code" --provider pollinations --model openai-large
+trae-cli run "Add documentation" --provider pollinations --model qwen-coder
+trae-cli run "Refactor code" --provider pollinations --model mistral
 
 # With custom working directory
 trae-cli run "Add unit tests for the utils module" --working-dir /path/to/project
 
 # Save trajectory for debugging
 trae-cli run "Refactor the database module" --trajectory-file debug_session.json
+
+# With API key for premium models
+trae-cli run "Complex analysis" --provider pollinations --model deepseek-reasoning --api-key "your-key"
 
 # Force to generate patches
 trae-cli run "Update the API endpoints" --must-patch
@@ -100,11 +112,12 @@ trae-cli run "Update the API endpoints" --must-patch
 #### `trae interactive` - Interactive Mode
 
 ```bash
-# Start interactive session
+# Start interactive session with default Pollinations model
 trae-cli interactive
 
-# With custom configuration
-trae-cli interactive --provider openai --model gpt-4o --max-steps 30
+# With specific Pollinations model
+trae-cli interactive --provider pollinations --model deepseek-reasoning --max-steps 30
+trae-cli interactive --provider pollinations --model qwen-coder
 ```
 
 In interactive mode, you can:
@@ -125,19 +138,19 @@ trae-cli show-config --config-file my_config.json
 
 ### Configuration
 
-Trae Agent uses a JSON configuration file (`trae_config.json`) for settings:
+Polli-Agent uses a JSON configuration file (`trae_config.json`) for settings:
 
 ```json
 {
-  "default_provider": "anthropic",
+  "default_provider": "pollinations",
   "max_steps": 20,
   "enable_lakeview": true,
   "model_providers": {
-    "openai": {
-      "api_key": "your_openai_api_key",
-      "model": "gpt-4o",
+    "pollinations": {
+      "api_key": "",
+      "model": "openai",
       "max_tokens": 128000,
-      "temperature": 0.5,
+      "temperature": 0.7,
       "top_p": 1,
       "max_retries": 10
     },
@@ -194,33 +207,26 @@ Trae Agent uses a JSON configuration file (`trae_config.json`) for settings:
 4. Default values (lowest)
 
 ```bash
-# Use GPT-4 through OpenRouter
-trae-cli run "Write a Python script" --provider openrouter --model "openai/gpt-4o"
-
-# Use Claude through OpenRouter
-trae-cli run "Review this code" --provider openrouter --model "anthropic/claude-3-5-sonnet"
-
-# Use Gemini through OpenRouter
-trae-cli run "Generate docs" --provider openrouter --model "google/gemini-pro"
-
-# Use Qwen through Ollama
-trae-cli run "Comment this code" --provider ollama --model "qwen3"
+# Use different Pollinations models for specific tasks
+trae-cli run "Write a Python script" --provider pollinations --model openai
+trae-cli run "Debug complex code" --provider pollinations --model deepseek-reasoning
+trae-cli run "Generate documentation" --provider pollinations --model qwen-coder
+trae-cli run "Refactor legacy code" --provider pollinations --model mistral
+trae-cli run "Large codebase analysis" --provider pollinations --model openai-large
 ```
 
-**Popular OpenRouter Models:**
-- `openai/gpt-4o` - Latest GPT-4 model
-- `anthropic/claude-3-5-sonnet` - Excellent for coding tasks
-- `google/gemini-pro` - Strong reasoning capabilities
-- `meta-llama/llama-3.1-405b` - Open source alternative
-- `openai/gpt-4o-mini` - Fast and cost-effective
+**Available Pollinations Models:**
+- `openai` - General purpose, works without API key (default)
+- `deepseek-reasoning` - Excellent for complex problem solving
+- `qwen-coder` - Specialized for coding tasks
+- `mistral` - Fast and efficient for most tasks
+- `openai-large` - Enhanced capabilities for complex projects
 
 ### Environment Variables
 
-- `OPENAI_API_KEY` - OpenAI API key
-- `ANTHROPIC_API_KEY` - Anthropic API key
-- `OPENROUTER_API_KEY` - OpenRouter API key
-- `OPENROUTER_SITE_URL` - (Optional) Your site URL for OpenRouter rankings
-- `OPENROUTER_SITE_NAME` - (Optional) Your site name for OpenRouter rankings
+- `POLLINATIONS_API_KEY` - Pollinations API key (optional - works without for basic models)
+
+**Note:** Unlike other agents, Polli-Agent works perfectly without any API key for basic models. Set `POLLINATIONS_API_KEY` only if you want access to premium models like DeepSeek, Qwen, and Mistral.
 
 ## 🛠️ Available Tools
 
@@ -289,10 +295,9 @@ For more details, see [TRAJECTORY_RECORDING.md](TRAJECTORY_RECORDING.md).
 ## 📋 Requirements
 
 - Python 3.12+
-- API key for your chosen provider:
-  - OpenAI API key (for OpenAI models)
-  - Anthropic API key (for Anthropic models)
-  - OpenRouter API key (for OpenRouter models)
+- **Optional:** Pollinations API key (only needed for premium models)
+  - **Free Tier:** Works without any API key using basic models
+  - **Premium Tier:** Requires `POLLINATIONS_API_KEY` for advanced models like DeepSeek, Qwen, Mistral
 
 ## 🔧 Troubleshooting
 
@@ -306,13 +311,14 @@ PYTHONPATH=. trae-cli run "your task"
 
 **API Key Issues:**
 ```bash
-# Verify your API keys are set
-echo $OPENAI_API_KEY
-echo $ANTHROPIC_API_KEY
-echo $OPENROUTER_API_KEY
+# Check if Pollinations API key is set (optional)
+echo $POLLINATIONS_API_KEY
 
 # Check configuration
 trae-cli show-config
+
+# Test without API key (should work with basic models)
+trae-cli run "Create a simple Python script" --provider pollinations
 ```
 
 **Permission Errors:**
@@ -327,4 +333,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-We thank Anthropic for building the [anthropic-quickstart](https://github.com/anthropics/anthropic-quickstarts) project that served as a valuable reference for the tool ecosystem.
+- **[Pollinations AI](https://pollinations.ai)** - For providing the powerful AI models that make Polli-Agent possible
+- **[Trae-Agent](https://github.com/trae-agent/trae-agent)** - The excellent foundation that Polli-Agent is built upon
+- **Anthropic** - For building the [anthropic-quickstart](https://github.com/anthropics/anthropic-quickstarts) project that served as a valuable reference for the tool ecosystem

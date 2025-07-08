@@ -22,6 +22,7 @@ class LLMProvider(Enum):
     OPENROUTER = "openrouter"
     DOUBAO = "doubao"
     GOOGLE = "google"
+    POLLINATIONS = "pollinations"
 
 
 class LLMClient:
@@ -33,35 +34,40 @@ class LLMClient:
 
         self.provider: LLMProvider = provider
 
-        match provider:
-            case LLMProvider.OPENAI:
-                from .openai_client import OpenAIClient
+        if provider == LLMProvider.OPENAI:
+            from .openai_client import OpenAIClient
 
-                self.client: BaseLLMClient = OpenAIClient(model_parameters)
-            case LLMProvider.ANTHROPIC:
-                from .anthropic_client import AnthropicClient
+            self.client: BaseLLMClient = OpenAIClient(model_parameters)
+        elif provider == LLMProvider.ANTHROPIC:
+            from .anthropic_client import AnthropicClient
 
-                self.client = AnthropicClient(model_parameters)
-            case LLMProvider.AZURE:
-                from .azure_client import AzureClient
+            self.client = AnthropicClient(model_parameters)
+        elif provider == LLMProvider.AZURE:
+            from .azure_client import AzureClient
 
-                self.client = AzureClient(model_parameters)
-            case LLMProvider.OPENROUTER:
-                from .openrouter_client import OpenRouterClient
+            self.client = AzureClient(model_parameters)
+        elif provider == LLMProvider.OPENROUTER:
+            from .openrouter_client import OpenRouterClient
 
-                self.client = OpenRouterClient(model_parameters)
-            case LLMProvider.DOUBAO:
-                from .doubao_client import DoubaoClient
+            self.client = OpenRouterClient(model_parameters)
+        elif provider == LLMProvider.DOUBAO:
+            from .doubao_client import DoubaoClient
 
-                self.client = DoubaoClient(model_parameters)
-            case LLMProvider.OLLAMA:
-                from .ollama_client import OllamaClient
+            self.client = DoubaoClient(model_parameters)
+        elif provider == LLMProvider.OLLAMA:
+            from .ollama_client import OllamaClient
 
-                self.client = OllamaClient(model_parameters)
-            case LLMProvider.GOOGLE:
-                from .google_client import GoogleClient
+            self.client = OllamaClient(model_parameters)
+        elif provider == LLMProvider.GOOGLE:
+            from .google_client import GoogleClient
 
-                self.client = GoogleClient(model_parameters)
+            self.client = GoogleClient(model_parameters)
+        elif provider == LLMProvider.POLLINATIONS:
+            from .pollinations_client import PollinationsClient
+
+            self.client = PollinationsClient(model_parameters)
+        else:
+            raise ValueError(f"Unsupported provider: {provider}")
 
     def set_trajectory_recorder(self, recorder: TrajectoryRecorder | None) -> None:
         """Set the trajectory recorder for the underlying client."""

@@ -71,6 +71,7 @@ def load_config(
         "openrouter": "OPENROUTER_API_KEY",
         "doubao": "DOUBAO_API_KEY",
         "google": "GOOGLE_API_KEY",
+        "pollinations": "POLLINATIONS_API_KEY",
     }
 
     resolved_api_key = resolve_config_value(
