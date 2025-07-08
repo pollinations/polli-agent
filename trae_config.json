@@ -1,9 +1,9 @@
 {
-  "default_provider": "pollinations-openai",
+  "default_provider": "openai",
   "max_steps": 20,
   "enable_lakeview": true,
   "model_providers": {
-    "pollinations-openai": {
+    "openai": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "openai",
@@ -14,18 +14,7 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations": {
-      "api_key": "",
-      "base_url": "https://text.pollinations.ai/openai/v1",
-      "model": "openai",
-      "max_tokens": 4096,
-      "temperature": 0.7,
-      "top_p": 1.0,
-      "top_k": 0,
-      "parallel_tool_calls": false,
-      "max_retries": 3
-    },
-    "pollinations-deepseek": {
+    "deepseek": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "deepseek-reasoning",
@@ -36,7 +25,7 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations-qwen-coder": {
+    "qwen-coder": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "qwen-coder",
@@ -47,7 +36,7 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations-mistral": {
+    "mistral": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "mistral",
@@ -58,7 +47,7 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations-openai-large": {
+    "openai-large": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "openai-large",
@@ -69,7 +58,7 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations-grok": {
+    "grok": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "grok",
@@ -82,7 +71,7 @@
     }
   },
   "lakeview_config": {
-    "model_provider": "pollinations-openai",
+    "model_provider": "openai",
     "model_name": "openai"
   }
 }
