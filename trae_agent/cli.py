@@ -18,6 +18,7 @@ from rich.table import Table
 from trae_agent.utils.cli_console import CLIConsole
 
 from .agent import TraeAgent
+from .utils.api_key_manager import ensure_api_key_available, update_config_with_api_key
 from .utils.config import Config, resolve_config_value
 
 # Load environment variables
@@ -171,6 +172,18 @@ def run(
 
     config = load_config(provider, model, api_key, config_file, max_steps)
 
+    # Check if API key is needed and prompt if necessary
+    current_provider = config.default_provider
+    current_model = config.model_providers[current_provider].model
+    current_api_key = config.model_providers[current_provider].api_key
+    
+    # Ensure API key is available for premium models
+    required_api_key = ensure_api_key_available(current_provider, current_model, current_api_key)
+    
+    if required_api_key and required_api_key != current_api_key:
+        # Update config with the API key
+        config.model_providers[current_provider].api_key = required_api_key
+
     # Create agent
     agent: TraeAgent = create_agent(config)
 
@@ -249,6 +262,18 @@ def interactive(
     config = load_config(
         provider, model, api_key, config_file=config_file, max_steps=max_steps
     )
+
+    # Check if API key is needed and prompt if necessary
+    current_provider = config.default_provider
+    current_model = config.model_providers[current_provider].model
+    current_api_key = config.model_providers[current_provider].api_key
+    
+    # Ensure API key is available for premium models
+    required_api_key = ensure_api_key_available(current_provider, current_model, current_api_key)
+    
+    if required_api_key and required_api_key != current_api_key:
+        # Update config with the API key
+        config.model_providers[current_provider].api_key = required_api_key
 
     console.print(
         Panel(
