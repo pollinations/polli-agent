@@ -68,14 +68,15 @@ export POLLINATIONS_API_KEY="your-pollinations-api-key"
 ### Basic Usage
 
 ```bash
-# Run with default Pollinations model (free tier)
+# Run with default model (OpenAI GPT-4o Mini - free tier)
 trae-cli run "Create a hello world Python script"
 
-# Use specific Pollinations models
-trae-cli run "Create a Python script" --provider pollinations --model openai
-trae-cli run "Debug this code" --provider pollinations --model deepseek-reasoning
-trae-cli run "Write documentation" --provider pollinations --model qwen-coder
-trae-cli run "Refactor code" --provider pollinations --model mistral
+# Use specific Pollinations models (just select the provider!)
+trae-cli run "Create a Python script" --provider pollinations-openai
+trae-cli run "Debug complex code" --provider pollinations-deepseek-reasoning
+trae-cli run "Write documentation" --provider pollinations-qwen-coder
+trae-cli run "Refactor code" --provider pollinations-mistral
+trae-cli run "Large project analysis" --provider pollinations-openai-large
 ```
 
 ## 📖 Usage
@@ -87,14 +88,16 @@ The main entry point is the `trae` command with several subcommands:
 #### `trae run` - Execute a Task
 
 ```bash
-# Basic task execution (uses default Pollinations model)
+# Basic task execution (uses default OpenAI model)
 trae-cli run "Create a Python script that calculates fibonacci numbers"
 
-# With specific Pollinations models
-trae-cli run "Fix the bug in main.py" --provider pollinations --model deepseek-reasoning
-trae-cli run "Optimize this code" --provider pollinations --model openai-large
-trae-cli run "Add documentation" --provider pollinations --model qwen-coder
-trae-cli run "Refactor code" --provider pollinations --model mistral
+# With specific Pollinations models (pre-configured providers)
+trae-cli run "Fix the bug in main.py" --provider pollinations-deepseek-reasoning
+trae-cli run "Optimize this code" --provider pollinations-openai-large
+trae-cli run "Add documentation" --provider pollinations-qwen-coder
+trae-cli run "Refactor code" --provider pollinations-mistral
+trae-cli run "Fast coding task" --provider pollinations-openai-fast
+trae-cli run "Advanced reasoning" --provider pollinations-grok
 
 # With custom working directory
 trae-cli run "Add unit tests for the utils module" --working-dir /path/to/project
@@ -103,7 +106,7 @@ trae-cli run "Add unit tests for the utils module" --working-dir /path/to/projec
 trae-cli run "Refactor the database module" --trajectory-file debug_session.json
 
 # With API key for premium models
-trae-cli run "Complex analysis" --provider pollinations --model deepseek-reasoning --api-key "your-key"
+trae-cli run "Complex analysis" --provider pollinations-deepseek-reasoning --api-key "your-key"
 
 # Force to generate patches
 trae-cli run "Update the API endpoints" --must-patch
@@ -112,12 +115,13 @@ trae-cli run "Update the API endpoints" --must-patch
 #### `trae interactive` - Interactive Mode
 
 ```bash
-# Start interactive session with default Pollinations model
+# Start interactive session with default model
 trae-cli interactive
 
-# With specific Pollinations model
-trae-cli interactive --provider pollinations --model deepseek-reasoning --max-steps 30
-trae-cli interactive --provider pollinations --model qwen-coder
+# With specific Pollinations models
+trae-cli interactive --provider pollinations-deepseek-reasoning --max-steps 30
+trae-cli interactive --provider pollinations-qwen-coder
+trae-cli interactive --provider pollinations-grok
 ```
 
 In interactive mode, you can:
@@ -138,18 +142,18 @@ trae-cli show-config --config-file my_config.json
 
 ### Configuration
 
-Polli-Agent uses a JSON configuration file (`trae_config.json`) for settings:
+Polli-Agent uses a JSON configuration file (`trae_config.json`) with **pre-configured providers** for each model:
 
 ```json
 {
-  "default_provider": "pollinations",
+  "default_provider": "pollinations-openai",
   "max_steps": 20,
   "enable_lakeview": true,
   "model_providers": {
-    "pollinations": {
+    "pollinations-openai": {
       "api_key": "",
       "model": "openai",
-      "max_tokens": 128000,
+      "max_tokens": 4096,
       "temperature": 0.7,
       "top_p": 1,
       "max_retries": 10
@@ -207,20 +211,28 @@ Polli-Agent uses a JSON configuration file (`trae_config.json`) for settings:
 4. Default values (lowest)
 
 ```bash
-# Use different Pollinations models for specific tasks
-trae-cli run "Write a Python script" --provider pollinations --model openai
-trae-cli run "Debug complex code" --provider pollinations --model deepseek-reasoning
-trae-cli run "Generate documentation" --provider pollinations --model qwen-coder
-trae-cli run "Refactor legacy code" --provider pollinations --model mistral
-trae-cli run "Large codebase analysis" --provider pollinations --model openai-large
+# Use different Pollinations models for specific tasks (pre-configured providers)
+trae-cli run "Write a Python script" --provider pollinations-openai
+trae-cli run "Debug complex code" --provider pollinations-deepseek-reasoning
+trae-cli run "Generate documentation" --provider pollinations-qwen-coder
+trae-cli run "Refactor legacy code" --provider pollinations-mistral
+trae-cli run "Large codebase analysis" --provider pollinations-openai-large
+trae-cli run "Fast development" --provider pollinations-openai-fast
+trae-cli run "Advanced reasoning" --provider pollinations-grok
+trae-cli run "Latest AI capabilities" --provider pollinations-llama-scout
 ```
 
-**Available Pollinations Models:**
-- `openai` - General purpose, works without API key (default)
-- `deepseek-reasoning` - Excellent for complex problem solving
-- `qwen-coder` - Specialized for coding tasks
-- `mistral` - Fast and efficient for most tasks
-- `openai-large` - Enhanced capabilities for complex projects
+**Available Pre-Configured Providers:**
+- `pollinations-openai` - General purpose, works without API key (default)
+- `pollinations-deepseek-reasoning` - Excellent for complex problem solving
+- `pollinations-qwen-coder` - Specialized for coding tasks
+- `pollinations-mistral` - Fast and efficient for most tasks
+- `pollinations-openai-large` - Enhanced capabilities for complex projects
+- `pollinations-openai-fast` - Speed-optimized for quick tasks
+- `pollinations-grok` - Advanced reasoning capabilities
+- `pollinations-llama-scout` - Latest Llama 4 Scout model
+- `pollinations-deepseek` - DeepSeek V3 model
+- `pollinations-phi` - Microsoft Phi-4 with vision support
 
 ### Environment Variables
 

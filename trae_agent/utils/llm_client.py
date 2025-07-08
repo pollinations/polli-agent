@@ -23,6 +23,17 @@ class LLMProvider(Enum):
     DOUBAO = "doubao"
     GOOGLE = "google"
     POLLINATIONS = "pollinations"
+    # Individual Pollinations model providers
+    POLLINATIONS_OPENAI = "pollinations-openai"
+    POLLINATIONS_DEEPSEEK = "pollinations-deepseek"
+    POLLINATIONS_DEEPSEEK_REASONING = "pollinations-deepseek-reasoning"
+    POLLINATIONS_QWEN_CODER = "pollinations-qwen-coder"
+    POLLINATIONS_MISTRAL = "pollinations-mistral"
+    POLLINATIONS_OPENAI_LARGE = "pollinations-openai-large"
+    POLLINATIONS_GROK = "pollinations-grok"
+    POLLINATIONS_LLAMA_SCOUT = "pollinations-llama-scout"
+    POLLINATIONS_OPENAI_FAST = "pollinations-openai-fast"
+    POLLINATIONS_PHI = "pollinations-phi"
 
 
 class LLMClient:
@@ -62,7 +73,19 @@ class LLMClient:
             from .google_client import GoogleClient
 
             self.client = GoogleClient(model_parameters)
-        elif provider == LLMProvider.POLLINATIONS:
+        elif provider in [
+            LLMProvider.POLLINATIONS,
+            LLMProvider.POLLINATIONS_OPENAI,
+            LLMProvider.POLLINATIONS_DEEPSEEK,
+            LLMProvider.POLLINATIONS_DEEPSEEK_REASONING,
+            LLMProvider.POLLINATIONS_QWEN_CODER,
+            LLMProvider.POLLINATIONS_MISTRAL,
+            LLMProvider.POLLINATIONS_OPENAI_LARGE,
+            LLMProvider.POLLINATIONS_GROK,
+            LLMProvider.POLLINATIONS_LLAMA_SCOUT,
+            LLMProvider.POLLINATIONS_OPENAI_FAST,
+            LLMProvider.POLLINATIONS_PHI,
+        ]:
             from .pollinations_client import PollinationsClient
 
             self.client = PollinationsClient(model_parameters)

@@ -1,9 +1,9 @@
 {
-  "default_provider": "pollinations",
+  "default_provider": "pollinations-openai",
   "max_steps": 20,
   "enable_lakeview": true,
   "model_providers": {
-    "pollinations": {
+    "pollinations-openai": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "openai",
@@ -13,10 +13,109 @@
       "top_k": 0,
       "parallel_tool_calls": false,
       "max_retries": 3
+    },
+    "pollinations-deepseek": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "deepseek",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-deepseek-reasoning": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "deepseek-reasoning",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-qwen-coder": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "qwen-coder",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-mistral": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "mistral",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-openai-large": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "openai-large",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-grok": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "grok",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-llama-scout": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "llamascout",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-openai-fast": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "openai-fast",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
+    },
+    "pollinations-phi": {
+      "api_key": "",
+      "base_url": "https://text.pollinations.ai/openai/v1",
+      "model": "phi",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "top_k": 0,
+      "parallel_tool_calls": false,
+      "max_retries": 3
     }
   },
   "lakeview_config": {
-    "model_provider": "pollinations",
+    "model_provider": "pollinations-openai",
     "model_name": "openai"
   }
 }
