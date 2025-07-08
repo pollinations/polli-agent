@@ -24,16 +24,16 @@ class LLMProvider(Enum):
     GOOGLE = "google"
     POLLINATIONS = "pollinations"
     # Individual Pollinations model providers
-    POLLINATIONS_OPENAI = "pollinations-openai"
-    POLLINATIONS_DEEPSEEK = "pollinations-deepseek"
-    POLLINATIONS_DEEPSEEK_REASONING = "pollinations-deepseek-reasoning"
-    POLLINATIONS_QWEN_CODER = "pollinations-qwen-coder"
-    POLLINATIONS_MISTRAL = "pollinations-mistral"
-    POLLINATIONS_OPENAI_LARGE = "pollinations-openai-large"
-    POLLINATIONS_GROK = "pollinations-grok"
-    POLLINATIONS_LLAMA_SCOUT = "pollinations-llama-scout"
-    POLLINATIONS_OPENAI_FAST = "pollinations-openai-fast"
-    POLLINATIONS_PHI = "pollinations-phi"
+    POLLINATIONS_OPENAI = "openai"
+    POLLINATIONS_DEEPSEEK = "deepseek"
+    POLLINATIONS_DEEPSEEK_REASONING = "deepseek-reasoning"
+    POLLINATIONS_QWEN_CODER = "qwen-coder"
+    POLLINATIONS_MISTRAL = "mistral"
+    POLLINATIONS_OPENAI_LARGE = "openai-large"
+    POLLINATIONS_GROK = "grok"
+    POLLINATIONS_LLAMA_SCOUT = "llama-scout"
+    POLLINATIONS_OPENAI_FAST = "openai-fast"
+    POLLINATIONS_PHI = "phi"
 
 
 class LLMClient:

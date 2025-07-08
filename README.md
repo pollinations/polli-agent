@@ -107,11 +107,11 @@ export POLLINATIONS_API_KEY="your-pollinations-api-key"
 polli run "Create a hello world Python script"
 
 # Use specific Pollinations models (just select the provider!)
-polli run "Create a Python script" --provider pollinations-openai
-polli run "Debug complex code" --provider pollinations-deepseek-reasoning
-polli run "Write documentation" --provider pollinations-qwen-coder
-polli run "Refactor code" --provider pollinations-mistral
-polli run "Large project analysis" --provider pollinations-openai-large
+polli run "Create a Python script" --provider openai
+polli run "Debug complex code" --provider deepseek-reasoning
+polli run "Write documentation" --provider qwen-coder
+polli run "Refactor code" --provider mistral
+polli run "Large project analysis" --provider openai-large
 ```
 
 ## 📖 Usage
@@ -127,12 +127,12 @@ The main entry point is the `polli` command with several subcommands:
 polli run "Create a Python script that calculates fibonacci numbers"
 
 # With specific Pollinations models (pre-configured providers)
-polli run "Fix the bug in main.py" --provider pollinations-deepseek-reasoning
-polli run "Optimize this code" --provider pollinations-openai-large
-polli run "Add documentation" --provider pollinations-qwen-coder
-polli run "Refactor code" --provider pollinations-mistral
-polli run "Fast coding task" --provider pollinations-openai-fast
-polli run "Advanced reasoning" --provider pollinations-grok
+polli run "Fix the bug in main.py" --provider deepseek-reasoning
+polli run "Optimize this code" --provider openai-large
+polli run "Add documentation" --provider qwen-coder
+polli run "Refactor code" --provider mistral
+polli run "Fast coding task" --provider openai-fast
+polli run "Advanced reasoning" --provider grok
 
 # With custom working directory
 polli run "Add unit tests for the utils module" --working-dir /path/to/project
@@ -141,7 +141,7 @@ polli run "Add unit tests for the utils module" --working-dir /path/to/project
 polli run "Refactor the database module" --trajectory-file debug_session.json
 
 # With API key for premium models
-polli run "Complex analysis" --provider pollinations-deepseek-reasoning --api-key "your-key"
+polli run "Complex analysis" --provider deepseek-reasoning --api-key "your-key"
 
 # Force to generate patches
 polli run "Update the API endpoints" --must-patch
@@ -154,9 +154,9 @@ polli run "Update the API endpoints" --must-patch
 polli interactive
 
 # With specific Pollinations models
-polli interactive --provider pollinations-deepseek-reasoning --max-steps 30
-polli interactive --provider pollinations-qwen-coder
-polli interactive --provider pollinations-grok
+polli interactive --provider deepseek-reasoning --max-steps 30
+polli interactive --provider qwen-coder
+polli interactive --provider grok
 ```
 
 In interactive mode, you can:
@@ -181,11 +181,11 @@ Polli-Agent uses a JSON configuration file (`trae_config.json`) with **pre-confi
 
 ```json
 {
-  "default_provider": "pollinations-openai",
+  "default_provider": "openai",
   "max_steps": 20,
   "enable_lakeview": true,
   "model_providers": {
-    "pollinations-openai": {
+    "openai": {
       "api_key": "",
       "model": "openai",
       "max_tokens": 4096,
@@ -247,27 +247,27 @@ Polli-Agent uses a JSON configuration file (`trae_config.json`) with **pre-confi
 
 ```bash
 # Use different Pollinations models for specific tasks (pre-configured providers)
-polli run "Write a Python script" --provider pollinations-openai
-polli run "Debug complex code" --provider pollinations-deepseek-reasoning
-polli run "Generate documentation" --provider pollinations-qwen-coder
-polli run "Refactor legacy code" --provider pollinations-mistral
-polli run "Large codebase analysis" --provider pollinations-openai-large
-polli run "Fast development" --provider pollinations-openai-fast
-polli run "Advanced reasoning" --provider pollinations-grok
-polli run "Latest AI capabilities" --provider pollinations-llama-scout
+polli run "Write a Python script" --provider openai
+polli run "Debug complex code" --provider deepseek-reasoning
+polli run "Generate documentation" --provider qwen-coder
+polli run "Refactor legacy code" --provider mistral
+polli run "Large codebase analysis" --provider openai-large
+polli run "Fast development" --provider openai-fast
+polli run "Advanced reasoning" --provider grok
+polli run "Latest AI capabilities" --provider llama-scout
 ```
 
 **Available Pre-Configured Providers:**
-- `pollinations-openai` - General purpose, works without API key (default)
-- `pollinations-deepseek-reasoning` - Excellent for complex problem solving
-- `pollinations-qwen-coder` - Specialized for coding tasks
-- `pollinations-mistral` - Fast and efficient for most tasks
-- `pollinations-openai-large` - Enhanced capabilities for complex projects
-- `pollinations-openai-fast` - Speed-optimized for quick tasks
-- `pollinations-grok` - Advanced reasoning capabilities
-- `pollinations-llama-scout` - Latest Llama 4 Scout model
-- `pollinations-deepseek` - DeepSeek V3 model
-- `pollinations-phi` - Microsoft Phi-4 with vision support
+- `openai` - General purpose, works without API key (default)
+- `deepseek-reasoning` - Excellent for complex problem solving
+- `qwen-coder` - Specialized for coding tasks
+- `mistral` - Fast and efficient for most tasks
+- `openai-large` - Enhanced capabilities for complex projects
+- `openai-fast` - Speed-optimized for quick tasks
+- `grok` - Advanced reasoning capabilities
+- `llama-scout` - Latest Llama 4 Scout model
+- `deepseek` - DeepSeek V3 model
+- `phi` - Microsoft Phi-4 with vision support
 
 ### Environment Variables
 
