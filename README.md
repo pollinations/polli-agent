@@ -35,6 +35,41 @@ cd polli-agent
 uv sync
 ```
 
+### Global Installation (Recommended)
+
+To use `polli` command globally from anywhere:
+
+#### Option 1: Quick Install Script
+```bash
+git clone https://github.com/pollinations/polli-agent.git
+cd polli-agent
+./install.sh
+```
+
+#### Option 2: Manual Install
+```bash
+git clone https://github.com/pollinations/polli-agent.git
+cd polli-agent
+pip install -e .
+```
+
+After installation, you can use `polli` from anywhere:
+```bash
+polli run "Create a Python script"
+polli interactive
+polli --help
+```
+
+### Development Setup
+
+For development, use UV to set up the project:
+```bash
+git clone https://github.com/pollinations/polli-agent.git
+cd polli-agent
+uv sync
+# Use: uv run polli [command]
+```
+
 ### Setup API Keys
 
 **Polli-Agent works with or without an API key!**
@@ -43,7 +78,7 @@ uv sync
 Polli-Agent works out of the box with basic Pollinations models:
 ```bash
 # No setup needed - just start using it!
-trae-cli run "Create a hello world Python script"
+polli run "Create a hello world Python script"
 ```
 
 #### Option 2: Premium Models (API Key Required)
@@ -69,59 +104,59 @@ export POLLINATIONS_API_KEY="your-pollinations-api-key"
 
 ```bash
 # Run with default model (OpenAI GPT-4o Mini - free tier)
-trae-cli run "Create a hello world Python script"
+polli run "Create a hello world Python script"
 
 # Use specific Pollinations models (just select the provider!)
-trae-cli run "Create a Python script" --provider pollinations-openai
-trae-cli run "Debug complex code" --provider pollinations-deepseek-reasoning
-trae-cli run "Write documentation" --provider pollinations-qwen-coder
-trae-cli run "Refactor code" --provider pollinations-mistral
-trae-cli run "Large project analysis" --provider pollinations-openai-large
+polli run "Create a Python script" --provider pollinations-openai
+polli run "Debug complex code" --provider pollinations-deepseek-reasoning
+polli run "Write documentation" --provider pollinations-qwen-coder
+polli run "Refactor code" --provider pollinations-mistral
+polli run "Large project analysis" --provider pollinations-openai-large
 ```
 
 ## 📖 Usage
 
 ### Command Line Interface
 
-The main entry point is the `trae` command with several subcommands:
+The main entry point is the `polli` command with several subcommands:
 
-#### `trae run` - Execute a Task
+#### `polli run` - Execute a Task
 
 ```bash
 # Basic task execution (uses default OpenAI model)
-trae-cli run "Create a Python script that calculates fibonacci numbers"
+polli run "Create a Python script that calculates fibonacci numbers"
 
 # With specific Pollinations models (pre-configured providers)
-trae-cli run "Fix the bug in main.py" --provider pollinations-deepseek-reasoning
-trae-cli run "Optimize this code" --provider pollinations-openai-large
-trae-cli run "Add documentation" --provider pollinations-qwen-coder
-trae-cli run "Refactor code" --provider pollinations-mistral
-trae-cli run "Fast coding task" --provider pollinations-openai-fast
-trae-cli run "Advanced reasoning" --provider pollinations-grok
+polli run "Fix the bug in main.py" --provider pollinations-deepseek-reasoning
+polli run "Optimize this code" --provider pollinations-openai-large
+polli run "Add documentation" --provider pollinations-qwen-coder
+polli run "Refactor code" --provider pollinations-mistral
+polli run "Fast coding task" --provider pollinations-openai-fast
+polli run "Advanced reasoning" --provider pollinations-grok
 
 # With custom working directory
-trae-cli run "Add unit tests for the utils module" --working-dir /path/to/project
+polli run "Add unit tests for the utils module" --working-dir /path/to/project
 
 # Save trajectory for debugging
-trae-cli run "Refactor the database module" --trajectory-file debug_session.json
+polli run "Refactor the database module" --trajectory-file debug_session.json
 
 # With API key for premium models
-trae-cli run "Complex analysis" --provider pollinations-deepseek-reasoning --api-key "your-key"
+polli run "Complex analysis" --provider pollinations-deepseek-reasoning --api-key "your-key"
 
 # Force to generate patches
-trae-cli run "Update the API endpoints" --must-patch
+polli run "Update the API endpoints" --must-patch
 ```
 
-#### `trae interactive` - Interactive Mode
+#### `polli interactive` - Interactive Mode
 
 ```bash
 # Start interactive session with default model
-trae-cli interactive
+polli interactive
 
 # With specific Pollinations models
-trae-cli interactive --provider pollinations-deepseek-reasoning --max-steps 30
-trae-cli interactive --provider pollinations-qwen-coder
-trae-cli interactive --provider pollinations-grok
+polli interactive --provider pollinations-deepseek-reasoning --max-steps 30
+polli interactive --provider pollinations-qwen-coder
+polli interactive --provider pollinations-grok
 ```
 
 In interactive mode, you can:
@@ -134,10 +169,10 @@ In interactive mode, you can:
 #### `trae show-config` - Configuration Status
 
 ```bash
-trae-cli show-config
+polli show-config
 
 # With custom config file
-trae-cli show-config --config-file my_config.json
+polli show-config --config-file my_config.json
 ```
 
 ### Configuration
@@ -212,14 +247,14 @@ Polli-Agent uses a JSON configuration file (`trae_config.json`) with **pre-confi
 
 ```bash
 # Use different Pollinations models for specific tasks (pre-configured providers)
-trae-cli run "Write a Python script" --provider pollinations-openai
-trae-cli run "Debug complex code" --provider pollinations-deepseek-reasoning
-trae-cli run "Generate documentation" --provider pollinations-qwen-coder
-trae-cli run "Refactor legacy code" --provider pollinations-mistral
-trae-cli run "Large codebase analysis" --provider pollinations-openai-large
-trae-cli run "Fast development" --provider pollinations-openai-fast
-trae-cli run "Advanced reasoning" --provider pollinations-grok
-trae-cli run "Latest AI capabilities" --provider pollinations-llama-scout
+polli run "Write a Python script" --provider pollinations-openai
+polli run "Debug complex code" --provider pollinations-deepseek-reasoning
+polli run "Generate documentation" --provider pollinations-qwen-coder
+polli run "Refactor legacy code" --provider pollinations-mistral
+polli run "Large codebase analysis" --provider pollinations-openai-large
+polli run "Fast development" --provider pollinations-openai-fast
+polli run "Advanced reasoning" --provider pollinations-grok
+polli run "Latest AI capabilities" --provider pollinations-llama-scout
 ```
 
 **Available Pre-Configured Providers:**
@@ -270,11 +305,11 @@ Trae Agent automatically records detailed execution trajectories for debugging a
 
 ```bash
 # Auto-generated trajectory file
-trae-cli run "Debug the authentication module"
+polli run "Debug the authentication module"
 # Saves to: trajectory_20250612_220546.json
 
 # Custom trajectory file
-trae-cli run "Optimize the database queries" --trajectory-file optimization_debug.json
+polli run "Optimize the database queries" --trajectory-file optimization_debug.json
 ```
 
 Trajectory files contain:
@@ -318,7 +353,7 @@ For more details, see [TRAJECTORY_RECORDING.md](TRAJECTORY_RECORDING.md).
 **Import Errors:**
 ```bash
 # Try setting PYTHONPATH
-PYTHONPATH=. trae-cli run "your task"
+PYTHONPATH=. polli run "your task"
 ```
 
 **API Key Issues:**
@@ -327,10 +362,10 @@ PYTHONPATH=. trae-cli run "your task"
 echo $POLLINATIONS_API_KEY
 
 # Check configuration
-trae-cli show-config
+polli show-config
 
 # Test without API key (should work with basic models)
-trae-cli run "Create a simple Python script" --provider pollinations
+polli run "Create a simple Python script" --provider pollinations
 ```
 
 **Permission Errors:**

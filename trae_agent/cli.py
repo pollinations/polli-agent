@@ -1,7 +1,7 @@
 # Copyright (c) 2025 ByteDance Ltd. and/or its affiliates
 # SPDX-License-Identifier: MIT
 
-"""Command Line Interface for Trae Agent."""
+"""Command Line Interface for Polli Agent."""
 
 import asyncio
 import os
@@ -93,7 +93,7 @@ def load_config(
 
 def create_agent(config: Config) -> TraeAgent:
     """
-    create_agent creates a Trae Agent with the specified configuration.
+    create_agent creates a Polli Agent with the specified configuration.
     Args:
         config: Agent configuration. It is expected that the config comes from load_config.
     Return:
@@ -116,7 +116,7 @@ def create_agent(config: Config) -> TraeAgent:
 @click.group()
 @click.version_option(version="0.1.0")
 def cli():
-    """Trae Agent - LLM-based agent for software engineering tasks."""
+    """Polli Agent 🌸 - AI-powered coding assistant with Pollinations models."""
     pass
 
 
@@ -146,7 +146,7 @@ def run(
     trajectory_file: str | None = None,
 ):
     """
-    Run is the main function of tace. It runs a task using Trae Agent.
+    Run is the main function of Polli. It runs a task using Polli Agent.
     Args:
         tasks: the task that you want your agent to solve. This is required to be in the input
         model: the model expected to be use
@@ -255,7 +255,7 @@ def interactive(
     trajectory_file: str | None = None,
 ):
     """
-    This function starts an interactive session with Trae Agent.
+    This function starts an interactive session with Polli Agent.
     Args:
         tasks: the task that you want your agent to solve. This is required to be in the input
     """
@@ -277,7 +277,7 @@ def interactive(
 
     console.print(
         Panel(
-            f"""[bold]Welcome to Trae Agent Interactive Mode![/bold]
+            f"""[bold]Welcome to Polli Agent Interactive Mode! 🌸[/bold]
     [bold]Provider:[/bold] {config.default_provider}
     [bold]Model:[/bold] {config.model_providers[config.default_provider].model}
     [bold]Max Steps:[/bold] {config.max_steps}

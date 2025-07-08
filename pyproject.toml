@@ -1,5 +1,5 @@
 [project]
-name = "trae-agent"
+name = "polli-agent"
 version = "0.1.0"
 description = "LLM-based agent for general purpose software engineering tasks"
 readme = "README.md"
@@ -29,7 +29,7 @@ evaluation = [
 ]
 
 [project.scripts]
-trae-cli = "trae_agent.cli:main"
+polli = "trae_agent.cli:main"
 
 [build-system]
 requires = ["hatchling"]

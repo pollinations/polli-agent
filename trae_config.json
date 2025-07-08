@@ -14,10 +14,10 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations-deepseek": {
+    "pollinations": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
-      "model": "deepseek",
+      "model": "openai",
       "max_tokens": 4096,
       "temperature": 0.7,
       "top_p": 1.0,
@@ -25,7 +25,7 @@
       "parallel_tool_calls": false,
       "max_retries": 3
     },
-    "pollinations-deepseek-reasoning": {
+    "pollinations-deepseek": {
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "deepseek-reasoning",
@@ -73,39 +73,6 @@
       "api_key": "",
       "base_url": "https://text.pollinations.ai/openai/v1",
       "model": "grok",
-      "max_tokens": 4096,
-      "temperature": 0.7,
-      "top_p": 1.0,
-      "top_k": 0,
-      "parallel_tool_calls": false,
-      "max_retries": 3
-    },
-    "pollinations-llama-scout": {
-      "api_key": "",
-      "base_url": "https://text.pollinations.ai/openai/v1",
-      "model": "llamascout",
-      "max_tokens": 4096,
-      "temperature": 0.7,
-      "top_p": 1.0,
-      "top_k": 0,
-      "parallel_tool_calls": false,
-      "max_retries": 3
-    },
-    "pollinations-openai-fast": {
-      "api_key": "",
-      "base_url": "https://text.pollinations.ai/openai/v1",
-      "model": "openai-fast",
-      "max_tokens": 4096,
-      "temperature": 0.7,
-      "top_p": 1.0,
-      "top_k": 0,
-      "parallel_tool_calls": false,
-      "max_retries": 3
-    },
-    "pollinations-phi": {
-      "api_key": "",
-      "base_url": "https://text.pollinations.ai/openai/v1",
-      "model": "phi",
       "max_tokens": 4096,
       "temperature": 0.7,
       "top_p": 1.0,

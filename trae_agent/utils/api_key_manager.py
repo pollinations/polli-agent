@@ -18,8 +18,10 @@ PREMIUM_MODELS = {
     "premium-model-example",  # Placeholder - update with actual premium models
 }
 
-# File to store API key
-API_KEY_FILE = Path.home() / ".pollinations" / "api_key"
+# File to store API key (XDG Base Directory Specification)
+# Use ~/.config/pollinations/credentials following standard CLI tool patterns
+CONFIG_DIR = Path.home() / ".config" / "pollinations"
+API_KEY_FILE = CONFIG_DIR / "credentials"
 
 
 def is_premium_model(model_name: str) -> bool:
@@ -38,9 +40,9 @@ def get_stored_api_key() -> Optional[str]:
 
 
 def store_api_key(api_key: str) -> bool:
-    """Store API key to file."""
+    """Store API key to file using XDG standard location."""
     try:
-        API_KEY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        CONFIG_DIR.mkdir(parents=True, exist_ok=True)
         API_KEY_FILE.write_text(api_key.strip())
         API_KEY_FILE.chmod(0o600)  # Secure permissions
         return True
